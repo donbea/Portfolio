@@ -1,85 +1,798 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Beatrice Joy Donton</title>
+  
+  <!-- Feminine + Formal + Friendly Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      /* Carousel/Vintage Color Palette */
+      --bistre: #210100;
+      --garnet: #8C0902;
+      --indian-red: #B14A36;
+      --goldfinch: #E6A341;
+      --butter: #FECE79;
+      --cream: #FFF8F0;
+      
+      /* UI Colors */
+      --bg-dark: #1a0100;
+      --bg-card: #2d0806;
+      --text-primary: #FFF8F0;
+      --text-secondary: #e8d5c4;
+      
+      /* Fonts */
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Nunito', sans-serif;
+      
+      /* Spacing & Radius */
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
 
-<style>
-body{
-font-family: Arial, sans-serif;
-margin:0;
-padding:0;
-background:#f5f5f5;
-}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
-background:white;
-}
+    /* Typography */
+    h1, h2, h3, h4, h5, h6,
+    .nav-logo,
+    .nav-cta,
+    .btn-primary,
+    .btn-secondary,
+    .stat-item h3,
+    .section-title,
+    .skill-card h3,
+    .edu-content h3,
+    .project-body h3,
+    .affil-content h3,
+    .contact-inner h2,
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+    
+    h1, .section-title, .stat-item h3 {
+      font-weight: 700;
+    }
+    
+    .btn-primary,
+    .btn-secondary,
+    .nav-cta,
+    .contact-btn {
+      font-weight: 600;
+    }
 
-img{
-width:150px;
-border-radius:50%;
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(26,1,0,0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(230,163,65,0.2);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-heading);
+      font-weight: 700; font-size: 1.3rem;
+      text-decoration: none; color: var(--text-primary);
+    }
+    .nav-logo .dot {
+      width: 32px; height: 32px;
+      background: var(--goldfinch);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 700; color: var(--bistre);
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: .9rem;
+      transition: color .2s;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--goldfinch); }
+    .nav-cta {
+      background: var(--goldfinch);
+      color: var(--bistre);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: .85rem;
+      padding: 10px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--butter); transform: translateY(-1px); }
 
-section{
-margin-top:20px;
-}
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -150px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(230,163,65,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .75rem;
+      color: var(--goldfinch);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+    .hero-badge span { width: 24px; height: 1px; background: var(--goldfinch); }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+    .hero h1 em { font-style: normal; color: var(--goldfinch); }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--goldfinch);
+      color: var(--bistre);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: .95rem;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--butter); transform: translateY(-2px); }
+    .btn-secondary {
+      border: 1.5px solid var(--goldfinch);
+      color: var(--goldfinch);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: .95rem;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: var(--butter); background: rgba(230,163,65,0.1); }
 
-h2{
-border-bottom:2px solid #ddd;
-padding-bottom:5px;
-}
-</style>
+    /* photo */
+    .hero-photo-wrap { position: relative; flex-shrink: 0; }
+    .hero-photo-bg {
+      width: 320px; height: 320px;
+      background: var(--butter);
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid rgba(230,163,65,0.3);
+    }
+    .hero-photo-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .placeholder-avatar {
+      width: 100%; height: 100%;
+      display: flex; align-items: flex-end; justify-content: center;
+      background: linear-gradient(160deg, #e8d5c4 0%, #c9b8a8 100%);
+    }
+    .placeholder-avatar svg { width: 70%; }
+    .hero-photo-accent {
+      position: absolute;
+      bottom: -16px; right: -16px;
+      width: 130px; height: 65px;
+      background: var(--indian-red);
+      border-radius: var(--radius-sm);
+      z-index: -1;
+    }
 
+    /* ── STATS STRIP ── */
+    .stats {
+      background: linear-gradient(135deg, var(--goldfinch), var(--butter));
+      padding: 38px 48px;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-item h3 {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--bistre);
+    }
+    .stat-item p { font-size: .82rem; color: rgba(33,1,0,0.7); margin-top: 4px; font-weight: 500; }
+
+    /* ── GENERIC SECTION ── */
+    .section { padding: 96px 48px; }
+    .section-inner { max-width: 1200px; margin: auto; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--goldfinch);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .section-label::before { content: ''; width: 28px; height: 2px; background: var(--goldfinch); }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+    .section-desc { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; max-width: 540px; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 52px;
+    }
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(230,163,65,0.15);
+      border-radius: var(--radius);
+      padding: 30px 26px;
+      transition: border-color .25s, transform .25s;
+    }
+    .skill-card:hover { border-color: var(--goldfinch); transform: translateY(-4px); }
+    .skill-icon {
+      width: 48px; height: 48px;
+      background: var(--goldfinch);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      font-size: 1.4rem;
+    }
+    .skill-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+    .skill-card p { color: var(--text-secondary); font-size: .9rem; line-height: 1.7; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .tag {
+      font-size: .73rem;
+      padding: 5px 13px;
+      border-radius: 50px;
+      border: 1px solid rgba(230,163,65,0.3);
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .tag.accent { background: var(--goldfinch); border-color: var(--goldfinch); color: var(--bistre); font-weight: 600; }
+
+    /* ── EDUCATION ── */
+    .edu-list { margin-top: 52px; display: flex; flex-direction: column; gap: 18px; }
+    .edu-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(230,163,65,0.15);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 26px;
+      align-items: start;
+      transition: border-color .25s;
+    }
+    .edu-card:hover { border-color: var(--goldfinch); }
+    .edu-year {
+      background: var(--goldfinch);
+      color: var(--bistre);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: .82rem;
+      padding: 7px 16px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .edu-content h3 { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; color: var(--text-primary); }
+    .edu-content .school { color: var(--goldfinch); font-size: .9rem; font-weight: 500; margin-bottom: 8px; }
+    .edu-content p { color: var(--text-secondary); font-size: .9rem; line-height: 1.7; }
+    .edu-content li { margin-left: 20px; margin-top: 5px; }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 22px;
+      margin-top: 52px;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(230,163,65,0.15);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .25s, border-color .25s;
+    }
+    .project-card:hover { transform: translateY(-6px); border-color: var(--goldfinch); }
+    .project-thumb {
+      height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      background: var(--bistre);
+    }
+    .project-body { padding: 28px; }
+    .project-body .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+    .project-body h3 { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600; margin-bottom: 10px; color: var(--text-primary); }
+    .project-body p { color: var(--text-secondary); font-size: .92rem; line-height: 1.7; margin-bottom: 0; }
+
+    /* ── AFFILIATION ── */
+    .affil-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 52px;
+    }
+    .affil-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(230,163,65,0.15);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex; gap: 18px; align-items: flex-start;
+      transition: border-color .25s;
+    }
+    .affil-card:hover { border-color: var(--goldfinch); }
+    .affil-badge {
+      width: 52px; height: 52px; flex-shrink: 0;
+      background: var(--goldfinch);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .affil-badge img { width: 35px; height: 35px; object-fit: contain; }
+    .affil-content h3 { font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem; margin-bottom: 6px; color: var(--text-primary); }
+    .affil-content p { font-size: .87rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ── CONTACT ─ */
+    .contact-wrap {
+      background: var(--bg-card);
+      border-top: 1px solid rgba(230,163,65,0.15);
+    }
+    .contact-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 96px 48px;
+      text-align: center;
+    }
+    .contact-content {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .contact-inner h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+    .contact-inner > .section-desc {
+      margin: 0 auto 48px;
+    }
+    
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      background: var(--bg-dark);
+      border: 2px solid rgba(230,163,65,0.3);
+      border-radius: 50px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-btn:hover {
+      border-color: var(--goldfinch);
+      background: rgba(230,163,65,0.1);
+      transform: translateY(-3px);
+    }
+    
+    .contact-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--goldfinch);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-dark);
+      border-top: 1px solid rgba(230,163,65,0.15);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-heading);
+      font-weight: 700; font-size: 1.1rem;
+    }
+    .footer-logo .dot {
+      width: 28px; height: 28px;
+      background: var(--goldfinch);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem; font-weight: 700; color: var(--bistre);
+    }
+    footer p { font-size: .8rem; color: var(--text-secondary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 14px 22px; }
+      .nav-links { display: none; }
+      .hero { padding: 96px 22px 56px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-photo-wrap { order: -1; display: flex; justify-content: center; }
+      .hero-photo-bg { width: 220px; height: 220px; }
+      .stats { padding: 28px 22px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .section { padding: 64px 22px; }
+      .contact-inner { padding: 64px 22px; }
+      .edu-card { grid-template-columns: 1fr; gap: 14px; padding: 24px; }
+      footer { flex-direction: column; align-items: flex-start; padding: 22px; }
+      .contact-links { flex-direction: column; align-items: center; }
+      .contact-btn { width: 100%; max-width: 300px; justify-content: center; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="dot">BD</span>
+      Portfolio
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#affiliation">Affiliation</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get In Touch</a>
+  </nav>
 
-<center>
-<img src="your-photo.jpg">
-<h1>Your Full Name</h1>
-</center>
+  <!-- ── HERO ─ -->
+  <section class="hero" id="about">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span></span>Open to Opportunities</div>
+        <h1>Hi, I'm<br><em>Beatrice Joy Donton</em></h1>
+        <p>
+          Building functional interfaces with an eye for design. 
+          Currently exploring new patterns in UI development and user experience.
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn-primary">See My Work ↓</a>
+          <a href="#contact" class="btn-secondary">Let's Talk</a>
+        </div>
+      </div>
 
-<section>
-<h2>Education</h2>
-<p>Your school here</p>
-</section>
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-bg">
+          <img src="DONTON-no-bg.png" alt="Beatrice Joy Donton"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="placeholder-avatar" style="display:none;">
+            <svg viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="100" cy="78" rx="46" ry="50" fill="#c9b8a8"/>
+              <ellipse cx="100" cy="210" rx="84" ry="62" fill="#c9b8a8"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section>
-<h2>Projects</h2>
-<ul>
-<li>Project 1</li>
-<li>Project 2</li>
-</ul>
-</section>
+  <!-- ── STATS ── -->
+  <div class="stats">
+    <div class="stats-inner">
+      <div class="stat-item"><h3>2+</h3><p>Years Learning</p></div>
+      <div class="stat-item"><h3>3+</h3><p>Projects Built</p></div>
+      <div class="stat-item"><h3>3+</h3><p>Skills Acquired</p></div>
+      <div class="stat-item"><h3>2028</h3><p>Expected Grad</p></div>
+    </div>
+  </div>
 
-<section>
-<h2>Skills</h2>
-<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>JavaScript</li>
-</ul>
-</section>
+  <!-- ── SKILLS ── -->
+  <section class="section" id="skills">
+    <div class="section-inner">
+      <div class="section-label">What I Know</div>
+      <h2 class="section-title">Skills & Expertise</h2>
+      <p class="section-desc">
+        A mix of technical and soft skills built through coursework, personal
+        projects, and hands-on practice.
+      </p>
+      <div class="skills-grid">
 
-<section>
-<h2>Affiliation (Optional)</h2>
-<p>Organization here</p>
-</section>
+        <div class="skill-card">
+          <div class="skill-icon">🌐</div>
+          <h3>Web Development</h3>
+          <p>Building responsive, accessible pages from scratch using modern standards.</p>
+          <div class="skill-tags">
+            <span class="tag accent">HTML</span>
+            <span class="tag accent">CSS</span>
+            <span class="tag accent">JavaScript</span>
+            <span class="tag accent">React JS</span>
+          </div>
+        </div>
 
-<section>
-<h2>Research (Optional)</h2>
-<p>Research title</p>
-</section>
+        <div class="skill-card">
+          <div class="skill-icon">💻</div>
+          <h3>Programming</h3>
+          <p>Writing clean, efficient code and solving algorithmic problems.</p>
+          <div class="skill-tags">
+            <span class="tag accent">Python</span>
+            <span class="tag accent">C#</span>
+            <span class="tag accent">C++</span>
+          </div>
+        </div>
 
-</div>
+        <div class="skill-card">
+          <div class="skill-icon">🗄️</div>
+          <h3>Databases</h3>
+          <p>Designing and querying relational databases for real-world systems.</p>
+          <div class="skill-tags">
+            <span class="tag accent">MySQL</span>
+            <span class="tag accent">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🛠️</div>
+          <h3>Tools & Workflow</h3>
+          <p>Using developer tools for version control, collaboration, and productivity.</p>
+          <div class="skill-tags">
+            <span class="tag accent">Figma</span>
+            <span class="tag accent">VS Code</span>
+            <span class="tag accent">GitHub</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section class="section" id="education"
+    style="background:var(--bg-card);border-top:1px solid rgba(230,163,65,0.15);border-bottom:1px solid rgba(230,163,65,0.15);">
+    <div class="section-inner">
+      <div class="section-label">My Background</div>
+      <h2 class="section-title">Education</h2>
+      <p class="section-desc">Academic foundation that shapes how I think, build, and problem-solve.</p>
+
+      <div class="edu-list">
+        <div class="edu-card">
+          <span class="edu-year">2024 – Present</span>
+          <div class="edu-content">
+            <h3>Bachelor of Science in Information Technology</h3>
+            <p class="school">Ateneo de Davao University, Davao City, Philippines</p>
+            <p>
+              Pursuing a degree focused on software development, systems analysis, and
+              database management.
+            <br><br>
+            <li>SY 2025-2026 First Semester President's List Honoree</li>
+            </p>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <span class="edu-year">2022 – 2024</span>
+          <div class="edu-content">
+            <h3>Senior High School — STEM Strand</h3>
+            <p class="school">Maryknoll School of Maniki, Inc.</p>
+            <p>
+              Completed the Science, Technology, Engineering, and Mathematics track with
+              academic distinction.
+              <br><br>
+              <li>Graduated with High Honors, Proficient in STEM</li>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section class="section" id="projects">
+    <div class="section-inner">
+      <div class="section-label">What I've Built</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-desc">A selection of academic and personal projects I've worked on.</p>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-thumb" style="background: linear-gradient(135deg, #B14A36, #E6A341); background: url(Group4.png) center/cover;">
+          </div>
+          <div class="project-body">
+            <div class="tag-row">
+              <span class="tag accent">HTML/CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <h3>crave.</h3>
+            <p>Your home for all things sweet. 
+              A space made for dreamers, bakers, and dessert lovers who find joy in creating.
+              Discover easy-to-follow recipes, baking tips, and treats worth sharing — made from passion, not perfection.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-thumb" style="background: linear-gradient(135deg, #B14A36, #E6A341); background: url(proj2.png) center/cover;">
+          </div>
+          <div class="project-body">
+            <div class="tag-row">
+              <span class="tag accent">Python</span>
+              <span class="tag">MySQL</span>
+            </div>
+            <h3>Student Information System</h3>
+            <p>A CRUD application for managing student information using a Python backend connected to a relational database.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-thumb" style="background: linear-gradient(135deg, #B14A36, #E6A341); background: url(proj4.png) center/cover;">
+          </div>
+          <div class="project-body">
+            <div class="tag-row">
+              <span class="tag accent">Figma</span>
+              <span class="tag">Wireframing</span>
+            </div>
+            <h3>SAMAHAN Website</h3>
+            <p>The official website for SAMAHAN, the Student Government of the College Unit of Ateneo de Davao University</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AFFILIATION ── -->
+  <section class="section" id="affiliation"
+    style="background:var(--bg-card);border-top:1px solid rgba(230,163,65,0.15);border-bottom:1px solid rgba(230,163,65,0.15);">
+    <div class="section-inner">
+      <div class="section-label">Community</div>
+      <h2 class="section-title">Affiliations</h2>
+      <p class="section-desc">Organizations and communities I'm proud to be part of.</p>
+      <div class="affil-grid">
+
+        <div class="affil-card">
+          <div class="affil-badge">
+              <img src="sysdev.png" alt="SYSDEV logo" onerror="this.style.display='none';this.parentElement.textContent='🎓'">
+          </div>
+          <div class="affil-content">
+            <h3>SAMAHAN Systems Development</h3>
+            <p>Member since 2025, participating in the development and maintenance of the SAMAHAN website and other digital platforms.</p>
+          </div>
+        </div>
+
+        <div class="affil-card">
+          <div class="affil-badge">
+              <img src="cs.png" alt="CSSEC logo" onerror="this.style.display='none';this.parentElement.textContent='🎓'">
+          </div>
+          <div class="affil-content">
+            <h3>Computer Studies Student Executive Council</h3>
+            <p>Currently the Deputy Processors Head, responsible for assisting in secretariat works within the SEC.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <div class="contact-wrap" id="contact">
+    <div class="contact-inner">
+      <div class="contact-content">
+        <div class="section-label" style="justify-content: center;">Get In Touch</div>
+        <h2>Let's Work Together</h2>
+        <p class="section-desc">
+          Whether it's a collaboration, internship opportunity, or just a chat about tech — I'd love to hear from you.
+        </p>
+        
+        <div class="contact-links">
+          <a href="mailto:beatricedonton@gmail.com" class="contact-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            Email Me
+          </a>
+          
+          <a href="https://github.com/donbea" target="_blank" class="contact-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+          
+          <a href="https://linkedin.com/in/dntnb08" target="_blank" class="contact-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">
+      <span class="dot">BD</span>
+      Beatrice Joy Donton
+    </div>
+    <p>© 2026 Beatrice Joy Donton. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
